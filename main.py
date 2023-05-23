@@ -5,11 +5,15 @@ import xml.etree.ElementTree as ET
 import tkinter as tk
 from tkinter import ttk
 
+favicon = 'favicon.ico'
+
 if getattr(sys, 'frozen', False):
     execution_path = os.path.dirname(sys.executable)
-    print(execution_path)
+    favicon = os.path.join(sys.prefix, favicon)
 elif __file__:
     execution_path = sys.path[0]
+    favicon = os.path.join(os.path.dirname(__file__), favicon) 
+    
     
 #execution_path = sys.path[0]
 xml_files = []  # Declare the xml_files list outside the if statement
@@ -88,7 +92,7 @@ if wifi_passwords:
 
         # Create a Tkinter window
         window = tk.Tk()
-        window.iconbitmap(execution_path+"\\favicon.ico") 
+        window.iconbitmap(favicon) 
         window.title("WiFi Information - By pablitous")
         window.protocol("WM_DELETE_WINDOW", on_closing)  # Call on_closing() when the window is closed
 
